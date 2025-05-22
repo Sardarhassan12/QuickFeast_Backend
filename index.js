@@ -16,7 +16,7 @@ const path = require('path');
 //   credentials: true
 // }));
 app.use(cors({
-  origin: 'https://quick-feast-frontend-jfyd.vercel.app',  // frontend URL
+  origin: 'https://quick-feast-frontend-nc3i.vercel.app/',  // frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,  // if you use cookies/auth
 }));
