@@ -4,14 +4,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 const connectDB = require('./dbConnection');
 const route = require('./Routes/route');
-const cors = require('cors');
 const path = require('path');
 
-// Add this at the very top, before other middlewares
+// CORS middleware
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://quick-feast-frontend-nc3i.vercel.app'); // NO trailing slash here
+  res.header('Access-Control-Allow-Origin', 'https://quick-feast-frontend-nc3i.vercel.app');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
@@ -19,25 +18,15 @@ app.use((req, res, next) => {
   next();
 });
 
-// You can keep or remove this CORS middleware; with the above, it’s not required but won’t hurt
-app.use(cors({
-  origin: 'https://quick-feast-frontend-nc3i.vercel.app',  // no trailing slash
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-}));
-
 connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
 app.use('/api', route);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
-
-
-
 
 
 
