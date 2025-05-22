@@ -236,7 +236,8 @@ route.post('/generate-qr', async (req, res) => {
         }
 
         // Generate URLs
-        const baseUrl = 'http://localhost:5173/user';
+        // const baseUrl = 'http://localhost:5173/user';
+        const baseUrl = 'https://quick-feast-frontend-jfyd.vercel.app/user';
         const tableLinks = Array.from({ length: tableCount }, (_, i) => ({
             tableNumber: i + 1,
             url: `${baseUrl}/${menuId}/table/${i + 1}`
